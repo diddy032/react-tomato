@@ -50,35 +50,19 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
-<<<<<<< HEAD
         </div> */}
       </main>
 
       {/* <footer className={styles.footer}>
-=======
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
->>>>>>> 6335364de1b29fcf781e802e3005c0f289dd5a5e
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-<<<<<<< HEAD
           Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer> */}
     </div>
   );
-=======
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
->>>>>>> 6335364de1b29fcf781e802e3005c0f289dd5a5e
 }
