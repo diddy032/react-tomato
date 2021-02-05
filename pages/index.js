@@ -14,7 +14,8 @@ export default function Home() {
       <main className={styles.main}>
         {/* <h1 className={styles.title}>番茄鐘</h1> */}
         <Clock />
-        {/* <Navbar /> */}
+        <Navbar />
+        
       </main>
 
     </div>
