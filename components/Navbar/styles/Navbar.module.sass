@@ -1,9 +1,14 @@
 #navbar
   height: 100vh
   position: relative
+  display: flex
   background: #333
   color: #fff
+  transition: margin-left 2s .5s
+  &.open-navbar
+    width: 100vw
   button
+    padding: 0
     border: none
     background: initial
   .nav-list
@@ -12,13 +17,20 @@
 
   .nav-button
     position: absolute
-    padding: 10px
+    padding: 15px
     background: #fff
-    border-top-left-radius: 15px
-    border-bottom-left-radius: 15px
+    border-top-left-radius: 20px
+    border-bottom-left-radius: 20px
+    border-top-right-radius: 5px
+    border-bottom-right-radius: 5px
     bottom: 5%
-    left: -20px
+    left: -25px
     font-size: 1.6rem
     display: flex
     justify-content: center
     align-content: center
+
+  .icon-arrow
+    height: 20px
+    width: 20px
+    margin-left: 5px
