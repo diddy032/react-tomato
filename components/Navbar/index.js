@@ -4,7 +4,7 @@ import AddTask from "../AddTask";
 import TaskList from "../TaskList";
 import Analutics from "../Analytics";
 import RingTone from "../RingTone";
-import styles from "./styles/Navbar.module.sass";
+import styles from "./styles/index.module.sass";
 export default function Indexs() {
   const [openNavbar, setOpenNavbar] = useState(false);
   console.log("openNavbar:", openNavbar);
@@ -64,7 +64,9 @@ export default function Indexs() {
             />
           </button>
         </div>
-        {openNavbar ? <AddTask /> : null}
+        <div className={styles[openNavbar ? "show-navbar" : "close-navbar"]}>
+          {openNavbar ? <TaskList /> : null}
+        </div>
       </div>
     </>
   );

@@ -7,15 +7,23 @@
   transition: margin-left 2s .5s
   &.open-navbar
     width: 100vw
-  button
-    padding: 0
-    border: none
-    background: initial
+    transition: .5s all
+    .show-navbar
+      width: 100%
+      display: block
+      transition: all .5s
+    .close-navbar
+      display: none
+      transition: all .5s
   .nav-list
     display: flex
     flex-direction: column
+    button
+      padding: 0
+      border: none
+      background: initial
 
-  .nav-button
+  button.nav-button
     position: absolute
     padding: 15px
     background: #fff
