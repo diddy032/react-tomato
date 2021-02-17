@@ -15,9 +15,7 @@ export default function Home() {
         {/* <h1 className={styles.title}>番茄鐘</h1> */}
         <Clock />
         <Navbar />
-        
       </main>
-
     </div>
   );
 }
