@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./styles/Clock.module.sass";
+import styles from "./styles/index.module.sass";
 export default function Indexs() {
   return (
     <div className={styles["clock-wrap"]}>

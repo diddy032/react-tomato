@@ -1,9 +1,10 @@
+@import "variables"
 #navbar
   height: 100vh
   position: relative
   display: flex
-  background: #333
-  color: #fff
+  background: $color-dark-800
+  color: $color-white
   transition: margin-left 2s .5s
   &.open-navbar
     width: 100vw
@@ -26,7 +27,7 @@
   button.nav-button
     position: absolute
     padding: 15px
-    background: #fff
+    background: $color-white
     border-top-left-radius: 20px
     border-bottom-left-radius: 20px
     border-top-right-radius: 5px
