@@ -56,11 +56,27 @@ export default function Indexs() {
               ? data.map((item, index) => (
                   <a href="#" onClick={(e) => editＴaskItem(e)} key={index}>
                     <li>
-                      <div>
-                        <div>{item.title}</div>
-                        <div>ooo</div>
-                        <div>
-                          <div>TASK TITLE</div>
+                      <div className={styles["task-item-frame"]}>
+                        <div className={styles["task-item-header"]}>
+                          <div>
+                            <div className={styles["task-title"]}>
+                              {item.title}
+                            </div>
+                            <div className={styles["task-time"]}>ooo</div>
+                          </div>
+                          <div>
+                            <Image
+                              src="/images/icons/icon-more.svg"
+                              alt="更多"
+                              width={15}
+                              height={15}
+                            />
+                          </div>
+                        </div>
+                        <div className={styles["task-info"]}>
+                          <div className={styles["task-input-label"]}>
+                            TASK TITLE
+                          </div>
                           <input type="text" placeholder="My Second Task" />
                           <div>ESTIMATED TOMOTO</div>
                           <div>
@@ -105,20 +121,15 @@ export default function Indexs() {
                               alt=""
                             />
                           </div>
-                          <div>
-                            <button>Archive</button>
-                            <button>SAVE</button>
+                          <div className={styles["btn-wrap"]}>
+                            <button className={styles["btn-archive"]}>
+                              Archive
+                            </button>
+                            <button className={styles["btn-save"]}>SAVE</button>
                           </div>
                         </div>
                       </div>
-                      <div>
-                        <Image
-                          src="/images/icons/icon-more.svg"
-                          alt="更多"
-                          width={15}
-                          height={15}
-                        />
-                      </div>
+                     
                     </li>
                   </a>
                 ))
