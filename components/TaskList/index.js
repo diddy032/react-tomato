@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import NavbarContainer from "../Shared/NavbarContainer";
 import styles from "./styles/index.module.sass";
 const data = [
   {
@@ -43,100 +45,73 @@ export default function Indexs() {
     console.log("hi");
   };
   return (
-    <div id={styles["task-list"]}>
-      <div className={styles["title"]}>TASK LISTS</div>
-      <div className={styles["content"]}>
-        <div className={styles["tab-wrap"]}>
-          <button className={styles["active"]}>TO DO</button>
-          <button>DONE</button>
-        </div>
-        <div className={styles["list-frame"]}>
-          <ul>
-            {data.length > 0
-              ? data.map((item, index) => (
-                  <a href="#" onClick={(e) => editＴaskItem(e)} key={index}>
-                    <li>
-                      <div className={styles["task-item-frame"]}>
-                        <div className={styles["task-item-header"]}>
-                          <div>
-                            <div className={styles["task-title"]}>
-                              {item.title}
-                            </div>
-                            <div className={styles["task-time"]}>ooo</div>
-                          </div>
-                          <div>
-                            <Image
-                              src="/images/icons/icon-more.svg"
-                              alt="更多"
-                              width={15}
-                              height={15}
-                            />
-                          </div>
-                        </div>
-                        <div className={styles["task-info"]}>
-                          <div className={styles["task-input-label"]}>
-                            TASK TITLE
-                          </div>
-                          <input type="text" placeholder="My Second Task" />
-                          <div>ESTIMATED TOMOTO</div>
-                          <div>
-                            <img
-                              src="/images/icons/tomato_small_color.svg"
-                              alt=""
-                            />
-                            <img
-                              src="/images/icons/tomato_small_color.svg"
-                              alt=""
-                            />
-                            <img
-                              src="/images/icons/tomato_small_gray.svg"
-                              alt=""
-                            />
-                            <img
-                              src="/images/icons/tomato_small_gray.svg"
-                              alt=""
-                            />
-                            <img
-                              src="/images/icons/tomato_small_gray.svg"
-                              alt=""
-                            />
-                            <img
-                              src="/images/icons/tomato_small_gray.svg"
-                              alt=""
-                            />
-                            <img
-                              src="/images/icons/tomato_small_gray.svg"
-                              alt=""
-                            />
-                            <img
-                              src="/images/icons/tomato_small_gray.svg"
-                              alt=""
-                            />
-                            <img
-                              src="/images/icons/tomato_small_gray.svg"
-                              alt=""
-                            />
-                            <img
-                              src="/images/icons/tomato_small_gray.svg"
-                              alt=""
-                            />
-                          </div>
-                          <div className={styles["btn-wrap"]}>
-                            <button className={styles["btn-archive"]}>
-                              Archive
-                            </button>
-                            <button className={styles["btn-save"]}>SAVE</button>
-                          </div>
-                        </div>
-                      </div>
-                     
-                    </li>
-                  </a>
-                ))
-              : null}
-          </ul>
-        </div>
+    <NavbarContainer title={"TASK LISTS"}>
+      <div className={styles["tab-wrap"]}>
+        <button className={styles["active"]}>TO DO</button>
+        <button>DONE</button>
       </div>
-    </div>
+      <div className={styles["list-frame"]}>
+        <ul>
+          {data.length > 0
+            ? data.map((item, index) => (
+                <a href="#" onClick={(e) => editＴaskItem(e)} key={index}>
+                  <li>{toggleItem(item)}</li>
+                </a>
+              ))
+            : null}
+        </ul>
+      </div>
+    </NavbarContainer>
   );
 }
+
+const toggleItem = (data) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className={styles["task-item-frame"]}>
+      <div
+        className={styles["task-item-header"]}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div>
+          <div className={styles["task-title"]}>{data.title}</div>
+          <div className={styles["task-time"]}>ooo</div>
+        </div>
+        <div
+          className={styles["btn-more"]}
+          style={{ transform: isOpen ? "rotate(90deg)" : "rotate(0)" }}
+        >
+          <Image
+            src="/images/icons/icon-more.svg"
+            alt="更多"
+            width={15}
+            height={15}
+          />
+        </div>
+      </div>
+      {isOpen && (
+        <div className={styles["task-info"]}>
+          <div className={styles["task-input-label"]}>TASK TITLE</div>
+          <input type="text" placeholder="My Second Task" />
+          <div>ESTIMATED TOMOTO</div>
+          <div>
+            <img src="/images/icons/tomato_small_color.svg" alt="" />
+            <img src="/images/icons/tomato_small_color.svg" alt="" />
+            <img src="/images/icons/tomato_small_gray.svg" alt="" />
+            <img src="/images/icons/tomato_small_gray.svg" alt="" />
+            <img src="/images/icons/tomato_small_gray.svg" alt="" />
+            <img src="/images/icons/tomato_small_gray.svg" alt="" />
+            <img src="/images/icons/tomato_small_gray.svg" alt="" />
+            <img src="/images/icons/tomato_small_gray.svg" alt="" />
+            <img src="/images/icons/tomato_small_gray.svg" alt="" />
+            <img src="/images/icons/tomato_small_gray.svg" alt="" />
+          </div>
+          <div className={styles["btn-wrap"]}>
+            <button className={styles["btn-archive"]}>Archive</button>
+            <button className={styles["btn-save"]}>SAVE</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
