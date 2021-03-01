@@ -1,3 +1,8 @@
+import NavbarContainer from "../Shared/NavbarContainer";
 export default function Indexs() {
-  return <div>分析的Ｃomponent</div>;
+  return (
+    <NavbarContainer title={"ANALYTICS REPORT"}>
+      分析的Ｃomponent
+    </NavbarContainer>
+  );
 }

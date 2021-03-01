@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import NavbarContainer from "../Shared/NavbarContainer";
+import EstimatedTomato from "../../components/Shared/EstimatedTomato";
 import styles from "./styles/index.module.sass";
 const data = [
   {
@@ -90,22 +91,12 @@ const toggleItem = (data) => {
         </div>
       </div>
       {isOpen && (
-        <div className={styles["task-info"]}>
+        <div
+          className={styles["task-info"]}
+        >
           <div className={styles["task-input-label"]}>TASK TITLE</div>
           <input type="text" placeholder="My Second Task" />
-          <div>ESTIMATED TOMOTO</div>
-          <div>
-            <img src="/images/icons/tomato_small_color.svg" alt="" />
-            <img src="/images/icons/tomato_small_color.svg" alt="" />
-            <img src="/images/icons/tomato_small_gray.svg" alt="" />
-            <img src="/images/icons/tomato_small_gray.svg" alt="" />
-            <img src="/images/icons/tomato_small_gray.svg" alt="" />
-            <img src="/images/icons/tomato_small_gray.svg" alt="" />
-            <img src="/images/icons/tomato_small_gray.svg" alt="" />
-            <img src="/images/icons/tomato_small_gray.svg" alt="" />
-            <img src="/images/icons/tomato_small_gray.svg" alt="" />
-            <img src="/images/icons/tomato_small_gray.svg" alt="" />
-          </div>
+          <EstimatedTomato />
           <div className={styles["btn-wrap"]}>
             <button className={styles["btn-archive"]}>Archive</button>
             <button className={styles["btn-save"]}>SAVE</button>

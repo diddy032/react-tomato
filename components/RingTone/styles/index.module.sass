@@ -1,1 +1,75 @@
 @import "variables"
+.title
+  font-size: 1.8rem
+  color: $color-light
+.content
+  height: calc(100% - 50px)
+  margin: 25px 0
+  padding: 25px 0
+  border-top: .3px $color-gray-200 solid
+.tab-wrap
+  display: flex
+  button
+    padding: 5px 20px
+    margin-right: 5px
+    border: none
+    border-top-left-radius: 10px
+    border-top-right-radius: 10px
+    color: $color-gray-200
+    background: $color-gray-400
+    &.active
+      color: $color-white
+      background: $color-red
+
+.list-frame
+  height: calc(100% - 5%)
+  overflow-y: auto
+  ul
+    li
+      margin-top: 1px
+      padding: 10px 15px 10px 40px
+      background: $color-dark-400
+
+.task-item-frame
+  width: 100%
+.task-item-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+.task-title
+  font-size: 1rem
+.btn-more
+  transition: all 0.3s ease 0s
+
+.task-info
+  margin-top: 15px
+  padding-top: 15px
+  font-size: .8rem
+  color: $color-gray-200
+  border-top: .3px $color-dark-800 solid
+  input
+    width: 100%
+    padding: 12px 15px
+    margin: 5px 0
+    font-size: 1rem
+    border: none
+    border-radius: 5px
+
+.btn-wrap
+  width: 100%
+.btn-archive, .btn-save
+  border-radius: 20px
+  font-size: 1rem
+  border: none
+  text-indent: 1
+.btn-archive
+  width: 28%
+  margin-right: calc( 100% - 98% )
+  padding: 10px 20px
+  background: $color-gray-400
+  color: $color-white
+.btn-save
+  width: 70%
+  padding: 10px 35px
+  background: $color-red
+  color: $color-white
