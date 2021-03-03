@@ -1,46 +1,44 @@
 @import "variables"
-#navbar
+.navbar
   height: 100vh
   position: relative
   display: flex
   background: $color-dark-800
   color: $color-white
-  transition: margin-left 2s .5s
-  &.open-navbar
-    width: 100vw
-    transition: .5s all
-    .show-navbar
-      width: 100%
-      display: block
-      transition: all .5s
-    .close-navbar
-      display: none
-      transition: all .5s
-  .nav-list
-    display: flex
-    flex-direction: column
-    button
-      padding: 0
-      border: none
-      background: initial
+  // transition: margin-left 2s 1s
+  transition: all 1s ease 0s
 
-  button.nav-button
-    position: absolute
-    padding: 15px
-    background: $color-white
-    border-top-left-radius: 20px
-    border-bottom-left-radius: 20px
-    border-top-right-radius: 5px
-    border-bottom-right-radius: 5px
-    bottom: 5%
-    left: -25px
-    font-size: 1.6rem
-    display: flex
-    justify-content: center
-    align-content: center
+.show-navbar
+  width: 100%
+  // display: none
+  transition: all 1s ease 0s
+  // background: red
 
-  .icon-arrow
-    height: 20px
-    width: 20px
-    margin-left: 5px
-    transition: all 1s ease 0s
+.nav-list
+  display: flex
+  flex-direction: column
+  button
+    padding: 0
+    border: none
+    background: initial
+
+button.nav-button
+  position: absolute
+  padding: 15px
+  background: $color-white
+  border-top-left-radius: 20px
+  border-bottom-left-radius: 20px
+  border-top-right-radius: 5px
+  border-bottom-right-radius: 5px
+  bottom: 5%
+  left: -25px
+  font-size: 1.6rem
+  display: flex
+  justify-content: center
+  align-content: center
+
+.icon-arrow
+  height: 20px
+  width: 20px
+  margin-left: 5px
+  transition: all 1s ease 0s

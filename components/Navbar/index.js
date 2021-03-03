@@ -7,7 +7,7 @@ import RingTone from "../RingTone";
 import styles from "./styles/index.module.sass";
 export default function Indexs() {
   const [openNavbar, setOpenNavbar] = useState(false);
-  const [NavbarTab, setNavbarTab] = useState(-1);
+  const [NavbarTab, setNavbarTab] = useState(0);
 
   const handsChangTab = (tab) => {
     if (!openNavbar) setOpenNavbar(true);
@@ -25,8 +25,9 @@ export default function Indexs() {
   return (
     <>
       <div
-        id={styles["navbar"]}
-        className={openNavbar ? styles["open-navbar"] : null}
+        // id={styles["navbar"]}
+        className={styles["navbar"]}
+        style={{ width: openNavbar && "100vw" }}
       >
         <div className={styles["nav-list"]}>
           <button onClick={() => handsChangTab(0)}>
@@ -87,7 +88,12 @@ export default function Indexs() {
             />
           </button>
         </div>
-        <div className={styles[openNavbar ? "show-navbar" : "close-navbar"]}>
+        <div
+          className={styles["show-navbar"]}
+          style={{
+            display: openNavbar ? "block" : "none",
+          }}
+        >
           {openNavbar && handsReturnTab()}
         </div>
       </div>

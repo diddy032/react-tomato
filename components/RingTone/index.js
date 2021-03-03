@@ -5,39 +5,27 @@ import styles from "./styles/index.module.sass";
 const data = [
   {
     id: "001",
-    title: "My First Task",
-    data: "",
-    time: 4,
+    title: "Ring tone 1",
   },
   {
     id: "002",
-    title: "My Second Task",
-    data: "",
-    time: 2,
+    title: "Ring tone 2",
   },
   {
     id: "003",
-    title: "My Third Task",
-    data: "",
-    time: 3,
+    title: "Ring tone 3",
   },
   {
     id: "004",
-    title: "My Fourth Task",
-    data: "",
-    time: 3,
+    title: "Ring tone 4",
   },
   {
     id: "005",
-    title: "My Fifth Task",
-    data: "",
-    time: 2,
+    title: "Ring tone 5",
   },
   {
     id: "006",
-    title: "My Sixth Task",
-    data: "",
-    time: 1,
+    title: "Ring tone 6",
   },
 ];
 export default function Indexs() {
@@ -51,7 +39,7 @@ export default function Indexs() {
         <ul>
           {data.length > 0
             ? data.map((item, index) => (
-                <a href="#" onClick={(e) => editＴaskItem(e)} key={index}>
+                <a href="#" key={index}>
                   <li>
                     <div className={styles["task-item-frame"]}>
                       <div className={styles["task-item-header"]}>
@@ -61,12 +49,12 @@ export default function Indexs() {
                           </div>
                         </div>
                         <div className={styles["btn-more"]}>
-                          <Image
+                          {/* <Image
                             src="/images/icons/icon-more.svg"
                             alt="更多"
                             width={15}
                             height={15}
-                          />
+                          /> */}
                         </div>
                       </div>
                     </div>
