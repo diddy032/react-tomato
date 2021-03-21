@@ -5,7 +5,7 @@ import TaskList from "../TaskList";
 import Analutics from "../Analytics";
 import RingTone from "../RingTone";
 import styles from "./styles/index.module.sass";
-export default function Indexs() {
+export default function Indexs({ data, saveData }) {
   const [openNavbar, setOpenNavbar] = useState(false);
   const [NavbarTab, setNavbarTab] = useState(0);
 
@@ -15,11 +15,11 @@ export default function Indexs() {
   };
 
   const handsReturnTab = () => {
-    if (NavbarTab === 0) return <AddTask />;
-    if (NavbarTab === 1) return <TaskList />;
-    if (NavbarTab === 2) return <Analutics />;
+    if (NavbarTab === 0) return <AddTask data={data} saveData={saveData} />;
+    if (NavbarTab === 1) return <TaskList data={data} saveData={saveData} />;
+    if (NavbarTab === 2) return <Analutics data={data} saveData={saveData} />;
     if (NavbarTab === 3) return <RingTone />;
-    if (NavbarTab === -1) return <AddTask />;
+    if (NavbarTab === -1) return <AddTask data={data} saveData={saveData} />;
   };
 
   return (

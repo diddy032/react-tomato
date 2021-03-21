@@ -2,18 +2,19 @@ import { useState, useEffect } from "react";
 import NavbarContainer from "../Shared/NavbarContainer";
 import EstimatedTomato from "../../components/Shared/EstimatedTomato";
 import styles from "./styles/index.module.sass";
-export default function Indexs() {
-  const [taskData, setTaskData] = useState([]);
+export default function Indexs({ data, saveData }) {
+  const [taskData, setTaskData] = useState(data);
   const [taskTitle, setTaskTitle] = useState("");
   const [taskTime, setTaskTime] = useState(1);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("TaskDataArray"));
-    data ? setTaskData(data) : setTaskData([]);
-  }, []);
+  // useEffect(() => {
+  //   const data = JSON.parse(localStorage.getItem("TaskDataArray"));
+  //   data ? setTaskData(data) : setTaskData([]);
+  // }, []);
 
-  const handleSaveTaskData = () => {
+  const handleSaveTaskData = (e) => {
+    e.preventDefault();
     if (taskTitle.length === 0) {
       setError(true);
       return;
@@ -26,11 +27,15 @@ export default function Indexs() {
       time: taskTime,
     };
     taskData.push(saveObj);
+    setTaskData(taskData);
+    saveData(taskData);
+
     setTaskTitle("");
     setTaskTime(1);
-    // console.log("taskData:", taskData, "\nsaveObj", saveObj);
+
     localStorage.setItem("TaskDataArray", JSON.stringify(taskData));
   };
+  // console.log("task data:", data, "\ntaskData:", taskData);
 
   return (
     <NavbarContainer title={"ADD NEW TASK"}>
@@ -48,7 +53,7 @@ export default function Indexs() {
       </div>
       <button
         className={styles["add-btn"]}
-        onClick={() => handleSaveTaskData()}
+        onClick={(e) => handleSaveTaskData(e)}
       >
         ADD TASK
       </button>
