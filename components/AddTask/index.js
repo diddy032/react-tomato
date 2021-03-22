@@ -23,8 +23,13 @@ export default function Indexs({ data, saveData }) {
     }
 
     let saveObj = {
-      title: taskTitle,
-      time: taskTime,
+      TaskName: taskTitle,
+      TaskDate: new Date(),
+      TaskCount: taskTime,
+      IsArchive: false,
+      IsDone: false,
+      ArchiveTime: 0,
+      FinishCount: 0,
     };
     taskData.push(saveObj);
     setTaskData(taskData);

@@ -3,52 +3,30 @@ import Image from "next/image";
 import NavbarContainer from "../Shared/NavbarContainer";
 import EstimatedTomato from "../../components/Shared/EstimatedTomato";
 import styles from "./styles/index.module.sass";
-// const data = [
-//   {
-//     id: "001",
-//     title: "My First Task",
-//     data: "",
-//     time: 4,
-//   },
-//   {
-//     id: "002",
-//     title: "My Second Task",
-//     data: "",
-//     time: 2,
-//   },
-//   {
-//     id: "003",
-//     title: "My Third Task",
-//     data: "",
-//     time: 3,
-//   },
-//   {
-//     id: "004",
-//     title: "My Fourth Task",
-//     data: "",
-//     time: 3,
-//   },
-//   {
-//     id: "005",
-//     title: "My Fifth Task",
-//     data: "",
-//     time: 2,
-//   },
-//   {
-//     id: "006",
-//     title: "My Sixth Task",
-//     data: "",
-//     time: 1,
-//   },
-// ];
+
 export default function Indexs({ data, saveData }) {
   const saveＴaskItem = (saveObj) => {
     console.log("save function");
-    let arr = data.forEach((item, index) => {
-      if (itme.title === saveObj.title) data[index] = saveObj;
+    let arr = data.map((item, index) => {
+      if (item.TaskDate === saveObj.TaskDate) {
+        console.log(
+          "change",
+          "\nitem",
+          item,
+          "\nIndex:",
+          data[index],
+          "\nName:",
+          data[index].TaskName,
+          saveObj.TaskName
+        );
+        data[index].TaskName = saveObj.TaskName;
+        data[index].TaskCount = saveObj.TaskCount;
+      }
+      return item;
     });
     console.log("arr:", arr);
-    // saveData(arr);
+    saveData(arr);
+    localStorage.setItem("TaskDataArray", JSON.stringify(arr));
   };
   return (
     <NavbarContainer title={"TASK LISTS"}>
@@ -73,8 +51,8 @@ export default function Indexs({ data, saveData }) {
 
 const toggleItem = (data, saveＴaskItem) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [taskTitle, setTaskTitle] = useState(data.title);
-  const [taskTime, setTaskTime] = useState(data.time);
+  const [taskTitle, setTaskTitle] = useState(data.TaskName);
+  const [taskTime, setTaskTime] = useState(data.TaskCount);
 
   // const [isArchive, setArchive] = useState(data.isArchive);
 
@@ -82,9 +60,15 @@ const toggleItem = (data, saveＴaskItem) => {
     e.preventDefault();
     console.log("taskTime:", taskTime, "\ntaskTitle:", taskTitle);
     let saveObj = {
-      title: taskTitle,
-      time: taskTime,
+      TaskDate: data.TaskDate,
+      TaskName: taskTitle,
+      TaskCount: taskTime,
+      // IsArchive: false,
+      // IsDone: false,
+      // ArchiveTime: 0,
+      // FinishCount: 0,
     };
+    console.log("saveObj", saveObj);
 
     saveＴaskItem(saveObj);
   };
@@ -96,7 +80,7 @@ const toggleItem = (data, saveＴaskItem) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <div>
-          <div className={styles["task-title"]}>{data.title}</div>
+          <div className={styles["task-title"]}>{data.TaskName}</div>
           <div className={styles["task-time"]}>ooo</div>
         </div>
         <div
