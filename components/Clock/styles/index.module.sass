@@ -57,15 +57,39 @@
     margin: 0px calc( 75px / 2 )
     height: 50px
     width: 50px
-    background: $color-white
+    position: relative
+    background-color: $color-white
+    background-position: center
+    background-size: contain
     border: none
     border-radius: 50%
-  img
-    margin: auto
+    cursor: pointer
+    span
+      opacity: 0
+      position: absolute
+      color: $color-red
+      text-align: center
+      font-weight: 600
+      top: 50%
+      left: 50%
+      transform: translate(-50%,-50%)
+    &.icon-start
+      background-image: url("/images/icons/start_gray.svg")
+    &.icon-stop
+      background-image: url("/images/icons/stop_gray.svg")
+    &.icon-reset
+      background-image: url("/images/icons/reset_gray.svg")
+    &:hover,&:focus
+      &.icon-start,&.icon-stop,&.icon-reset
+        span
+          padding: 5px 0
+          opacity: 1
+          background: rgba(255, 255, 255, .5)
+    .active
+      
 
 .task-note
   font-size: 1rem
-  
 
 .footer-text
   position: absolute

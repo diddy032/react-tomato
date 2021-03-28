@@ -27,7 +27,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Clock />
+        <Clock data={data} saveData={setData} />
         <Navbar data={data} saveData={setData} />
       </main>
     </div>

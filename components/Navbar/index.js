@@ -26,8 +26,9 @@ export default function Indexs({ data, saveData }) {
     <>
       <div
         // id={styles["navbar"]}
-        className={styles["navbar"]}
-        style={{ width: openNavbar && "100vw" }}
+        className={`${styles["navbar"]} ${
+          openNavbar && styles["navbar-width"]
+        }`}
       >
         <div className={styles["nav-list"]}>
           <button onClick={() => handsChangTab(0)}>
