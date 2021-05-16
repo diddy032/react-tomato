@@ -90,10 +90,9 @@ export default function Indexs({ data, saveData }) {
           </button>
         </div>
         <div
-          className={styles["show-navbar"]}
-          style={{
-            display: openNavbar ? "block" : "none",
-          }}
+          className={`${styles["show-navbar"]} ${
+            openNavbar ? styles.active : styles.hidden
+          }`}
         >
           {openNavbar && handsReturnTab()}
         </div>

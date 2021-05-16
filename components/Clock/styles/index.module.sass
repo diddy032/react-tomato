@@ -75,8 +75,10 @@
       transform: translate(-50%,-50%)
     &.icon-start
       background-image: url("/images/icons/start_gray.svg")
+      &.active
+        background-image: url('/images/icons/start_red.svg')
     &.icon-stop
-      background-image: url("/images/icons/stop_gray.svg")
+      background-image: url("/images/icons/pause_gray.svg")
     &.icon-reset
       background-image: url("/images/icons/reset_gray.svg")
     &:hover,&:focus
@@ -85,8 +87,9 @@
           padding: 5px 0
           opacity: 1
           background: rgba(255, 255, 255, .5)
-    // .active
-      
+      &.active
+        span
+          opacity: 0
 
 .task-note
   font-size: 1rem

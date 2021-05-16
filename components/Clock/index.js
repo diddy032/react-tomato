@@ -79,7 +79,7 @@ export default function Indexs({ data, saveData }) {
           <div>circle</div>
           <div className={styles["btn-wrap"]}>
             <button
-              className={styles["icon-start"]}
+              className={`${styles["icon-start"]} ${styles[isStart ? 'active' :'']}`}
               onClick={() => handleStardTime()}
               disabled={isStart}
             >
