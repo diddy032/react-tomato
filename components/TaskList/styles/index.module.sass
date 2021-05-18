@@ -28,6 +28,7 @@
     li
       margin-top: 1px
       padding: 10px 15px 10px 40px
+
       background: $color-dark-400
 
 .task-item-frame
@@ -36,6 +37,15 @@
   display: flex
   justify-content: space-between
   align-items: center
+  position: relative
+.active-item
+  width: 1vw
+  position: absolute
+  top: 50%
+  left: -8%
+  transform: translateY(-50%)
+  img
+    width: 100%
 .task-title
   font-size: 1rem
 .btn-more

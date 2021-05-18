@@ -6,8 +6,17 @@ export default function Indexs({ data, saveData }) {
   const [activeItem, setActive] = useState({});
   const [lastSecs, setLastSecs] = useState(activeMins * 60);
   const [isStart, setIsStart] = useState(false);
+  const [chartE1, setCahartE1] = useState();
+  const [totalPercentage, setTotalPercentage] = useState(100);
 
   const countRef = useRef(null);
+
+  useEffect(() => {
+    (async () => {
+      const ChartRes = await import("react-apexcharts");
+      setCahartE1(ChartRes);
+    })();
+  }, []);
 
   useEffect(() => {
     if (data.length === 0) return;
@@ -22,8 +31,8 @@ export default function Indexs({ data, saveData }) {
     }
   }, [lastSecs]);
 
-  console.log("時鐘：", "\ndata:", data);
-  console.log("activeItem:", activeItem);
+  // console.log("時鐘：", "\ndata:", data);
+  console.log("totalPercentage:", totalPercentage);
 
   const handleStardTime = () => {
     if (isStart === true) {
@@ -65,7 +74,17 @@ export default function Indexs({ data, saveData }) {
     const minutes = `${Math.floor(lastSecs / 60)}`;
     const getMinutes = `0${minutes % 60}`.slice(-2);
 
+    const percentage = (
+      (100 * totalSeconds(`${getMinutes} : ${getSeconds}`)) /
+      totalSeconds(`${activeMins} : 00`)
+    ).toFixed(0);
+    console.log("percentage:", percentage);
+    // setTotalPercentage(percentage);
     return `${getMinutes} : ${getSeconds}`;
+  };
+  const totalSeconds = (time) => {
+    var parts = time.split(":");
+    return parts[0] * 3600 + parts[1] * 60;
   };
 
   return (
@@ -74,12 +93,70 @@ export default function Indexs({ data, saveData }) {
         <div className={styles["clock-info"]}>
           <div className={styles["task-name"]}>
             {/* {activeItem?.TaskName ?? "-"} */}
-            {formatTime()}
+            {/* {formatTime()} */}
           </div>
-          <div>circle</div>
+          <div className={styles["chart-frame"]}>
+            {chartE1 && (
+              <chartE1.default
+                type="radialBar"
+                series={[formatTime()]}
+                // series={[50]}
+                // series={[totalPercentage]}
+                width="500px"
+                options={{
+                  chart: {
+                    height: 30,
+                  },
+                  plotOptions: {
+                    radialBar: {
+                      hollow: {
+                        margin: 0,
+                        size: "50%",
+                        background: "#fff",
+                      },
+                      track: {
+                        background: "#acacac",
+                      },
+                      dataLabels: {
+                        name: {
+                          show: false,
+                        },
+                        value: {
+                          // formatter: function (val) {
+                          //   return val;
+                          // },
+                          // formatter: () => {
+                          //   return formatTime();
+                          // },
+                          formatter: (val) => val,
+                          // formatter: function (
+                          //   value,
+                          //   { seriesIndex, dataPointIndex, w }
+                          // ) {
+                          //   return (
+                          //     w?.config?.series[seriesIndex]?.name +
+                          //     ":  " +
+                          //     value
+                          //   );
+                          // },
+                          fontSize: "30px",
+                          color: "#333333",
+                          show: true,
+                        },
+                      },
+                    },
+                  },
+                  labels: ["Cricket"],
+                }}
+              />
+            )}
+          </div>
+
           <div className={styles["btn-wrap"]}>
             <button
-              className={`${styles["icon-start"]} ${styles[isStart ? 'active' :'']}`}
+              className={`${styles["icon-start"]} ${
+                styles[isStart ? "active" : ""]
+              }`}
               onClick={() => handleStardTime()}
               disabled={isStart}
             >

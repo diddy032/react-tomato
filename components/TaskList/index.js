@@ -28,6 +28,7 @@ export default function Indexs({ data, saveData }) {
     saveData(arr);
     localStorage.setItem("TaskDataArray", JSON.stringify(arr));
   };
+  console.log("Tasklist index", "\ndata:", data, "\nsaveData:", saveData);
   return (
     <NavbarContainer title={"TASK LISTS"}>
       <div className={styles["tab-wrap"]}>
@@ -79,6 +80,9 @@ const toggleItem = (data, saveＴaskItem) => {
         className={styles["task-item-header"]}
         onClick={() => setIsOpen(!isOpen)}
       >
+        <div className={styles["active-item"]}>
+          <img src="/images/icons/tomato_small_color.svg" alt="" />
+        </div>
         <div>
           <div className={styles["task-title"]}>{data.TaskName}</div>
           <div className={styles["task-time"]}>ooo</div>
