@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import NavbarContainer from "../Shared/NavbarContainer";
-import EstimatedTomato from "../../components/Shared/EstimatedTomato";
+import NavbarContainer from "../shared/NavbarContainer";
+import EstimatedTomato from "../shared/EstimatedTomato";
 import styles from "./styles/index.module.sass";
 export default function Indexs({ data, saveData }) {
   const [taskData, setTaskData] = useState(data);

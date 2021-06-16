@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import NavbarContainer from "../Shared/NavbarContainer";
+import NavbarContainer from "../shared/NavbarContainer";
 import styles from "./styles/index.module.sass";
 const data = [
   {

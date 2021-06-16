@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import AddTask from "../AddTask";
-import TaskList from "../TaskList";
-import Analutics from "../Analytics";
-import RingTone from "../RingTone";
+import AddTask from "../addTask";
+import TaskList from "../taskList";
+import Analutics from "../analytics";
+import RingTone from "../ringTone";
 import styles from "./styles/index.module.sass";
 export default function Indexs({ data, saveData }) {
   const [openNavbar, setOpenNavbar] = useState(false);

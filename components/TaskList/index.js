@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import NavbarContainer from "../Shared/NavbarContainer";
-import EstimatedTomato from "../../components/Shared/EstimatedTomato";
+import NavbarContainer from "../shared/NavbarContainer";
+import EstimatedTomato from "../shared/EstimatedTomato";
 import styles from "./styles/index.module.sass";
 
 export default function Indexs({ data, saveData }) {
