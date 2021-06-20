@@ -4,7 +4,7 @@ import NavbarContainer from "../shared/NavbarContainer";
 import EstimatedTomato from "../shared/EstimatedTomato";
 import styles from "./styles/index.module.sass";
 
-export default function Indexs({ data, saveData }) {
+export default function Indexs({ data, setData }) {
   const saveＴaskItem = (saveObj) => {
     console.log("save function");
     let arr = data.map((item, index) => {
@@ -25,10 +25,10 @@ export default function Indexs({ data, saveData }) {
       return item;
     });
     console.log("arr:", arr);
-    saveData(arr);
+    setData(arr);
     localStorage.setItem("TaskDataArray", JSON.stringify(arr));
   };
-  console.log("Tasklist index", "\ndata:", data, "\nsaveData:", saveData);
+  console.log("Tasklist index", "\ndata:", data, "\nsetData:", setData);
   return (
     <NavbarContainer title={"TASK LISTS"}>
       <div className={styles["tab-wrap"]}>

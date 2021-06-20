@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import styles from "./styles/index.module.sass";
-export default function Indexs({ data, saveData }) {
+
+export default function Indexs({ data, setData }) {
   const activeMins = 25;
   const [activeItem, setActive] = useState({});
   const [lastSecs, setLastSecs] = useState(activeMins * 60);
@@ -31,8 +32,8 @@ export default function Indexs({ data, saveData }) {
     }
   }, [lastSecs]);
 
-  // console.log("時鐘：", "\ndata:", data);
-  console.log("totalPercentage:", totalPercentage);
+  console.log("時鐘：", "\ndata:", data);
+  // console.log("totalPercentage:", totalPercentage);
 
   const handleStardTime = () => {
     if (isStart === true) {
@@ -78,7 +79,7 @@ export default function Indexs({ data, saveData }) {
       (100 * totalSeconds(`${getMinutes} : ${getSeconds}`)) /
       totalSeconds(`${activeMins} : 00`)
     ).toFixed(0);
-    console.log("percentage:", percentage);
+    // console.log("percentage:", percentage);
     // setTotalPercentage(percentage);
     return `${getMinutes} : ${getSeconds}`;
   };

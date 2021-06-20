@@ -5,20 +5,20 @@ import Navbar from "../navbar";
 export default function HomeIndex() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("TaskDataArray"));
-    data && setData(data);
+    const getData = JSON.parse(localStorage.getItem("TaskDataArray"));
+    getData ? setData(getData) : setData([]);
   }, []);
-  // useEffect(() => {
-  //   console.log("hi~");
-  //   if (data.length === 0) return;
-  //   console.log("useEffect data:", data);
-  //   localStorage.setItem("TaskDataArray", JSON.stringify(data));
-  // }, [data, setData]);
-  console.log("index data:", data);
+
+  useEffect(() => {
+    if (data.length < 0) return;
+    localStorage.setItem("TaskDataArray", JSON.stringify(data));
+  }, [data]);
+
+  console.log("HomeIndex data:", data);
   return (
     <>
-      <Clock data={data} saveData={setData} />
-      <Navbar data={data} saveData={setData} />
+      <Clock data={data} setData={setData} />
+      <Navbar data={data} setData={setData} />
     </>
   );
 }

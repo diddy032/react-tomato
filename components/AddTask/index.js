@@ -2,18 +2,14 @@ import { useState, useEffect } from "react";
 import NavbarContainer from "../shared/NavbarContainer";
 import EstimatedTomato from "../shared/EstimatedTomato";
 import styles from "./styles/index.module.sass";
-export default function Indexs({ data, saveData }) {
-  const [taskData, setTaskData] = useState(data);
+
+export default function Indexs({ data, setData }) {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskTime, setTaskTime] = useState(1);
   const [error, setError] = useState(false);
 
-  // useEffect(() => {
-  //   const data = JSON.parse(localStorage.getItem("TaskDataArray"));
-  //   data ? setTaskData(data) : setTaskData([]);
-  // }, []);
-
   const handleSaveTaskData = (e) => {
+    let arr = data;
     e.preventDefault();
     if (taskTitle.length === 0) {
       setError(true);
@@ -31,16 +27,13 @@ export default function Indexs({ data, saveData }) {
       ArchiveTime: 0,
       FinishCount: 0,
     };
-    taskData.push(saveObj);
-    setTaskData(taskData);
-    saveData(taskData);
-
+    arr.push(saveObj);
+    console.log("push after taskData:", arr);
+    setData([...arr]);
     setTaskTitle("");
     setTaskTime(1);
-
-    localStorage.setItem("TaskDataArray", JSON.stringify(taskData));
   };
-  // console.log("task data:", data, "\ntaskData:", taskData);
+  console.log("Add Page data:", data);
 
   return (
     <NavbarContainer title={"ADD NEW TASK"}>

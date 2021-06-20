@@ -5,21 +5,23 @@ import TaskList from "../taskList";
 import Analutics from "../analytics";
 import RingTone from "../ringTone";
 import styles from "./styles/index.module.sass";
-export default function Indexs({ data, saveData }) {
-  const [openNavbar, setOpenNavbar] = useState(false);
-  const [NavbarTab, setNavbarTab] = useState(0);
 
+export default function Indexs(props) {
+  const { data, setData } = props;
+  const [openNavbar, setOpenNavbar] = useState(true);
+  const [NavbarTab, setNavbarTab] = useState(0);
+  
   const handsChangTab = (tab) => {
     if (!openNavbar) setOpenNavbar(true);
     setNavbarTab(tab);
   };
 
   const handsReturnTab = () => {
-    if (NavbarTab === 0) return <AddTask data={data} saveData={saveData} />;
-    if (NavbarTab === 1) return <TaskList data={data} saveData={saveData} />;
-    if (NavbarTab === 2) return <Analutics data={data} saveData={saveData} />;
+    if (NavbarTab === 0) return <AddTask data={data} setData={setData} />;
+    if (NavbarTab === 1) return <TaskList data={data} setData={setData} />;
+    if (NavbarTab === 2) return <Analutics data={data} setData={setData} />;
     if (NavbarTab === 3) return <RingTone />;
-    if (NavbarTab === -1) return <AddTask data={data} saveData={saveData} />;
+    if (NavbarTab === -1) return <AddTask data={data} setData={setData} />;
   };
 
   return (
@@ -94,7 +96,8 @@ export default function Indexs({ data, saveData }) {
             openNavbar ? styles.active : styles.hidden
           }`}
         >
-          {openNavbar && handsReturnTab()}
+          <AddTask data={data} setData={setData} />
+          {/* {openNavbar && handsReturnTab()} */}
         </div>
       </div>
     </>
