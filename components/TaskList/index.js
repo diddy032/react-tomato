@@ -4,31 +4,22 @@ import NavbarContainer from "../shared/NavbarContainer";
 import EstimatedTomato from "../shared/EstimatedTomato";
 import styles from "./styles/index.module.sass";
 
-export default function Indexs({ data, setData }) {
+export default function Indexs(props) {
+  const { data, setData, activeItem, setActiveItem } = props;
   const saveＴaskItem = (saveObj) => {
-    console.log("save function");
     let arr = data.map((item, index) => {
       if (item.TaskDate === saveObj.TaskDate) {
-        console.log(
-          "change",
-          "\nitem",
-          item,
-          "\nIndex:",
-          data[index],
-          "\nName:",
-          data[index].TaskName,
-          saveObj.TaskName
-        );
         data[index].TaskName = saveObj.TaskName;
         data[index].TaskCount = saveObj.TaskCount;
       }
       return item;
     });
-    console.log("arr:", arr);
+    console.log("saveＴaskItem arr:", arr);
     setData(arr);
-    localStorage.setItem("TaskDataArray", JSON.stringify(arr));
+    // localStorage.setItem("TaskDataArray", JSON.stringify(arr));
   };
-  console.log("Tasklist index", "\ndata:", data, "\nsetData:", setData);
+
+  console.log("Tasklist index", "\ndata:", data);
   return (
     <NavbarContainer title={"TASK LISTS"}>
       <div className={styles["tab-wrap"]}>
@@ -40,7 +31,14 @@ export default function Indexs({ data, setData }) {
           {data.length > 0
             ? data.map((item, index) => (
                 <a href="#" key={index}>
-                  <li>{toggleItem(item, saveＴaskItem)}</li>
+                  <li>
+                    {toggleItem(
+                      item,
+                      saveＴaskItem,
+                      activeItem.ID,
+                      setActiveItem
+                    )}
+                  </li>
                 </a>
               ))
             : null}
@@ -50,28 +48,25 @@ export default function Indexs({ data, setData }) {
   );
 }
 
-const toggleItem = (data, saveＴaskItem) => {
+const toggleItem = (data, saveＴaskItem, activeID, setActiveItem) => {
   const [isOpen, setIsOpen] = useState(false);
   const [taskTitle, setTaskTitle] = useState(data.TaskName);
   const [taskTime, setTaskTime] = useState(data.TaskCount);
 
-  // const [isArchive, setArchive] = useState(data.isArchive);
-
   const saveTaskItem = (e) => {
     e.preventDefault();
-    console.log("taskTime:", taskTime, "\ntaskTitle:", taskTitle);
+    e.stopPropagation();
     let saveObj = {
-      TaskDate: data.TaskDate,
       TaskName: taskTitle,
       TaskCount: taskTime,
-      // IsArchive: false,
-      // IsDone: false,
-      // ArchiveTime: 0,
-      // FinishCount: 0,
     };
-    console.log("saveObj", saveObj);
+    let newData = { ...data, ...saveObj };
+    saveＴaskItem(newData);
+  };
 
-    saveＴaskItem(saveObj);
+  const handleChangeActive = (e, obj) => {
+    e.stopPropagation();
+    setActiveItem(obj);
   };
 
   return (
@@ -80,10 +75,18 @@ const toggleItem = (data, saveＴaskItem) => {
         className={styles["task-item-header"]}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className={styles["active-item"]}>
-          <img src="/images/icons/tomato_small_color.svg" alt="" />
+        <div
+          className={styles["active-item"]}
+          onClick={(e) => handleChangeActive(e, data)}
+        >
+          {activeID === data.ID && (
+            <div className={styles["active-item-img"]}>
+              <img src="/images/icons/tomato_small_color.svg" alt="番茄圖片" />
+            </div>
+          )}
         </div>
-        <div>
+
+        <div className={styles["task-title-frame"]}>
           <div className={styles["task-title"]}>{data.TaskName}</div>
           <div className={styles["task-time"]}>ooo</div>
         </div>

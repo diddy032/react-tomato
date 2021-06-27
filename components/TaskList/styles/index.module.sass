@@ -27,8 +27,8 @@
   ul
     li
       margin-top: 1px
-      padding: 10px 15px 10px 40px
-
+      // padding: 10px 15px 10px 40px
+      padding: 10px
       background: $color-dark-400
 
 .task-item-frame
@@ -39,13 +39,20 @@
   align-items: center
   position: relative
 .active-item
-  width: 1vw
+  width: 30px
+  height: 30px
+  position: relative
+.active-item-img
+  text-align: center
+  width: 70%
   position: absolute
   top: 50%
-  left: -8%
-  transform: translateY(-50%)
+  left: 50%
+  transform: translate(-50%,-50%)
   img
     width: 100%
+.task-title-frame
+  width: 80%
 .task-title
   font-size: 1rem
 .btn-more

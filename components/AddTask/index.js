@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { nanoid } from "nanoid";
 import NavbarContainer from "../shared/NavbarContainer";
 import EstimatedTomato from "../shared/EstimatedTomato";
 import styles from "./styles/index.module.sass";
@@ -19,6 +20,7 @@ export default function Indexs({ data, setData }) {
     }
 
     let saveObj = {
+      ID: nanoid(),
       TaskName: taskTitle,
       TaskDate: new Date(),
       TaskCount: taskTime,

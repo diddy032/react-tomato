@@ -3,11 +3,11 @@ import Image from "next/image";
 import styles from "./styles/index.module.sass";
 
 export default function Indexs({ data, setData }) {
-  const activeMins = 25;
-  const [activeItem, setActive] = useState({});
-  const [lastSecs, setLastSecs] = useState(activeMins * 60);
-  const [isStart, setIsStart] = useState(false);
-  const [chartE1, setCahartE1] = useState();
+  const activeMins = 25; //單一節的分鐘
+  // const [activeItem, setActiveItem] = useState({});
+  const [lastSecs, setLastSecs] = useState(activeMins * 60); //剩餘分鐘
+  const [isStart, setIsStart] = useState(false); //是否開始
+  const [chartE1, setCahartE1] = useState(); //圖表
   const [totalPercentage, setTotalPercentage] = useState(100);
 
   const countRef = useRef(null);
@@ -19,11 +19,11 @@ export default function Indexs({ data, setData }) {
     })();
   }, []);
 
-  useEffect(() => {
-    if (data.length === 0) return;
-    let item = data.filter((e) => e.IsArchive);
-    item.length > 0 ? setActive(item[0]) : setActive(data[0]);
-  }, [data]);
+  // useEffect(() => {
+  //   if (data.length === 0) return;
+  //   let item = data.filter((e) => e.IsArchive);
+  //   item.length > 0 ? setActiveItem(item[0]) : setActiveItem(data[0]);
+  // }, [data]);
 
   useEffect(() => {
     if (lastSecs < 1) {
@@ -33,7 +33,6 @@ export default function Indexs({ data, setData }) {
   }, [lastSecs]);
 
   console.log("時鐘：", "\ndata:", data);
-  // console.log("totalPercentage:", totalPercentage);
 
   const handleStardTime = () => {
     if (isStart === true) {
@@ -90,7 +89,7 @@ export default function Indexs({ data, setData }) {
 
   return (
     <div className={styles["clock-wrap"]}>
-      {activeItem ? (
+      {data ? (
         <div className={styles["clock-info"]}>
           <div className={styles["task-name"]}>
             {/* {activeItem?.TaskName ?? "-"} */}

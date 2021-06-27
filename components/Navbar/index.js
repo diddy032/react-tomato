@@ -7,10 +7,10 @@ import RingTone from "../ringTone";
 import styles from "./styles/index.module.sass";
 
 export default function Indexs(props) {
-  const { data, setData } = props;
+  const { data, setData, activeItem, setActiveItem } = props;
   const [openNavbar, setOpenNavbar] = useState(true);
-  const [NavbarTab, setNavbarTab] = useState(0);
-  
+  const [NavbarTab, setNavbarTab] = useState(1);
+
   const handsChangTab = (tab) => {
     if (!openNavbar) setOpenNavbar(true);
     setNavbarTab(tab);
@@ -18,7 +18,15 @@ export default function Indexs(props) {
 
   const handsReturnTab = () => {
     if (NavbarTab === 0) return <AddTask data={data} setData={setData} />;
-    if (NavbarTab === 1) return <TaskList data={data} setData={setData} />;
+    if (NavbarTab === 1)
+      return (
+        <TaskList
+          data={data}
+          setData={setData}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+        />
+      );
     if (NavbarTab === 2) return <Analutics data={data} setData={setData} />;
     if (NavbarTab === 3) return <RingTone />;
     if (NavbarTab === -1) return <AddTask data={data} setData={setData} />;
@@ -96,8 +104,8 @@ export default function Indexs(props) {
             openNavbar ? styles.active : styles.hidden
           }`}
         >
-          <AddTask data={data} setData={setData} />
-          {/* {openNavbar && handsReturnTab()} */}
+          {/* <AddTask data={data} setData={setData} /> */}
+          {openNavbar && handsReturnTab()}
         </div>
       </div>
     </>
