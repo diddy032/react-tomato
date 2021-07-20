@@ -8,7 +8,7 @@ export default function Indexs(props) {
   const { data, setData, activeItem, setActiveItem } = props;
   const saveＴaskItem = (saveObj) => {
     let arr = data.map((item, index) => {
-      if (item.TaskDate === saveObj.TaskDate) {
+      if (item.ID === saveObj.ID) {
         data[index].TaskName = saveObj.TaskName;
         data[index].TaskCount = saveObj.TaskCount;
       }

@@ -24,10 +24,11 @@ export default function Indexs({ data, setData }) {
       TaskName: taskTitle,
       TaskDate: new Date(),
       TaskCount: taskTime,
-      IsArchive: false,
-      IsDone: false,
+      TaskStatus:0,
+      // IsArchive: false,
+      // IsDone: false,
       ArchiveTime: 0,
-      FinishCount: 0,
+      TaskFinishCount: 0,
     };
     arr.push(saveObj);
     console.log("push after taskData:", arr);

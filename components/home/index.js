@@ -14,6 +14,7 @@ export default function HomeIndex() {
   useEffect(() => {
     if (data.length < 0) return;
     localStorage.setItem("TaskDataArray", JSON.stringify(data));
+    data?.length > 0 && setActiveItem(data[0]);
   }, [data]);
 
   console.log("HomeIndex data:", data, "\nactiveItem:", activeItem);

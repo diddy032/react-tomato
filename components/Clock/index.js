@@ -2,9 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import styles from "./styles/index.module.sass";
 
-export default function Indexs({ data, setData }) {
+export default function Indexs(props) {
+  const { data, setData, activeItem } = props;
   const activeMins = 25; //單一節的分鐘
-  // const [activeItem, setActiveItem] = useState({});
   const [lastSecs, setLastSecs] = useState(activeMins * 60); //剩餘分鐘
   const [isStart, setIsStart] = useState(false); //是否開始
   const [chartE1, setCahartE1] = useState(); //圖表
@@ -19,26 +19,27 @@ export default function Indexs({ data, setData }) {
     })();
   }, []);
 
-  // useEffect(() => {
-  //   if (data.length === 0) return;
-  //   let item = data.filter((e) => e.IsArchive);
-  //   item.length > 0 ? setActiveItem(item[0]) : setActiveItem(data[0]);
-  // }, [data]);
-
   useEffect(() => {
     if (lastSecs < 1) {
+      handleEduitData(0, "finish");
+      console.log("fisish AAA");
       clearInterval(countRef.current);
       setIsStart(false);
     }
   }, [lastSecs]);
 
-  console.log("時鐘：", "\ndata:", data);
+  useEffect(() => {
+    console.log("更換項目:", activeItem);
+  }, [activeItem]);
+
+  console.log("時鐘：", "\ndata:", data, "\nactiveItem:", activeItem);
 
   const handleStardTime = () => {
     if (isStart === true) {
       // clearInterval(countRef.current);
       // setIsStart(false);
       stopTimer();
+      handleEduitData(lastSecs, "being");
     }
     // Else, lastSecs is inactive => START
     else if (lastSecs > 1) {
@@ -54,6 +55,7 @@ export default function Indexs({ data, setData }) {
     // clearInterval(countRef.current);
     // setIsStart(false);
     setLastSecs(activeMins * 60);
+    handleEduitData(activeMins * 60, "being");
   };
 
   const stopTimer = () => {
@@ -87,16 +89,36 @@ export default function Indexs({ data, setData }) {
     return parts[0] * 3600 + parts[1] * 60;
   };
 
+  const handleEduitData = (lastSecs, status) => {
+    console.log("eduit:", status);
+    let newData = data;
+    const index = newData.findIndex((e) => e.ID === activeItem.ID);
+    switch (status) {
+      case "being":
+        newData[index].LastSecs = lastSecs;
+        break;
+      case "finish":
+        let time = newData[index].TaskFinishCount
+          ? newData[index].TaskFinishCount
+          : 0;
+        delete newData[index].LastSecs;
+        newData[index].TaskFinishCount = time + 1;
+        console.log("finish:", newData);
+        break;
+    }
+    setData([...newData]);
+  };
+
   return (
     <div className={styles["clock-wrap"]}>
       {data ? (
         <div className={styles["clock-info"]}>
           <div className={styles["task-name"]}>
             {/* {activeItem?.TaskName ?? "-"} */}
-            {/* {formatTime()} */}
+            {formatTime()}
           </div>
           <div className={styles["chart-frame"]}>
-            {chartE1 && (
+            {/* {chartE1 && (
               <chartE1.default
                 type="radialBar"
                 series={[formatTime()]}
@@ -149,7 +171,7 @@ export default function Indexs({ data, setData }) {
                   labels: ["Cricket"],
                 }}
               />
-            )}
+            )} */}
           </div>
 
           <div className={styles["btn-wrap"]}>
