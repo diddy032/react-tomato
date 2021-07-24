@@ -8,7 +8,7 @@ import styles from "./styles/index.module.sass";
 
 export default function Indexs(props) {
   const { data, setData, activeItem, setActiveItem } = props;
-  const [openNavbar, setOpenNavbar] = useState(true);
+  const [openNavbar, setOpenNavbar] = useState(false);
   const [NavbarTab, setNavbarTab] = useState(1);
 
   const handsChangTab = (tab) => {
@@ -37,7 +37,7 @@ export default function Indexs(props) {
       <div
         // id={styles["navbar"]}
         className={`${styles["navbar"]} ${
-          openNavbar && styles["navbar-width"]
+          openNavbar ? styles["navbar-width"] : ""
         }`}
       >
         <div className={styles["nav-list"]}>
@@ -80,7 +80,9 @@ export default function Indexs(props) {
             />
           </button>
           <button
-            className={styles["nav-button"]}
+            className={`${styles["nav-button"]} ${
+              styles[openNavbar ? "active" : "hidden"]
+            }`}
             onClick={() => setOpenNavbar(!openNavbar)}
           >
             <Image

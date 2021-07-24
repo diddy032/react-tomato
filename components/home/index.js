@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Clock from "../clock";
 import Navbar from "../navbar";
+import styles from "./index.module.sass";
 
 export default function HomeIndex() {
   const [data, setData] = useState([]);
@@ -19,7 +20,7 @@ export default function HomeIndex() {
 
   console.log("HomeIndex data:", data, "\nactiveItem:", activeItem);
   return (
-    <>
+    <main className={styles.main}>
       <Clock
         data={data}
         setData={setData}
@@ -32,6 +33,6 @@ export default function HomeIndex() {
         activeItem={activeItem}
         setActiveItem={setActiveItem}
       />
-    </>
+    </main>
   );
 }

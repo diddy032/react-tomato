@@ -10,13 +10,15 @@
   //   max-width: 650px
 
 .show-navbar
-  width: 100%
+  // width: 100%
   width: 30vw
   max-width: 900px
+
   &.active
     opacity: 1
     display: block
     animation: opennavbar 0.5s
+    min-width: 450px
   &.hidden
     width: 0
     opacity: 0
@@ -24,7 +26,7 @@
 @keyframes opennavbar
   0%
     display: none
-    width: 70px
+    width: 80px
   100%
     width: 30vw
 
@@ -68,3 +70,32 @@ button.nav-button
   width: 20px
   margin-left: 5px
   transition: all 1s ease 0s
+
+@media (max-width:768px)
+  .navbar
+    position: fixed
+    top: 0
+    bottom: 0
+    right: -80px
+    &.navbar-width
+      left: 10%
+      right: 0
+
+  .show-navbar
+    width: 95%
+    &.active
+      width: calc(100% - 80px)
+      min-width: 200px
+
+  @keyframes opennavbar
+    0%
+      display: none
+    100%
+      width: 95%
+
+  button.nav-button
+    &.active
+      left: -25px
+    &.hidden
+      left: -100%
+
