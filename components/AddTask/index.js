@@ -24,10 +24,10 @@ export default function Indexs({ data, setData }) {
       TaskName: taskTitle,
       TaskDate: new Date(),
       TaskCount: taskTime,
-      TaskStatus:0,
+      TaskStatus: 0,
       // IsArchive: false,
       // IsDone: false,
-      ArchiveTime: 0,
+      PauseTime: 0,
       TaskFinishCount: 0,
     };
     arr.push(saveObj);

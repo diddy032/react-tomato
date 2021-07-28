@@ -4,8 +4,27 @@ import NavbarContainer from "../shared/NavbarContainer";
 import EstimatedTomato from "../shared/EstimatedTomato";
 import styles from "./styles/index.module.sass";
 
+// TaskStatus
+// 0 ===  TODO
+// １===  Done
+// 2  ===  Archive
+
 export default function Indexs(props) {
   const { data, setData, activeItem, setActiveItem } = props;
+  const [toDoArr, seToDoArr] = useState([]);
+  const [doneArr, seDoneArr] = useState([]);
+  const [archiveArr, seArchiveArr] = useState([]);
+  const [nowStatusTag, setNowStatusTag] = useState(0);
+
+  useEffect(() => {
+    const toDoArr = data.filter((i) => i.TaskStatus === 0);
+    const doneArr = data.filter((i) => i.TaskStatus === 1);
+    const archiveArr = data.filter((i) => i.TaskStatus === 2);
+    seToDoArr(toDoArr);
+    seDoneArr(doneArr);
+    seArchiveArr(archiveArr);
+  }, []);
+
   const saveＴaskItem = (saveObj) => {
     let arr = data.map((item, index) => {
       if (item.ID === saveObj.ID) {
@@ -23,8 +42,24 @@ export default function Indexs(props) {
   return (
     <NavbarContainer title={"TASK LISTS"}>
       <div className={styles["tab-wrap"]}>
-        <button className={styles["active"]}>TO DO</button>
-        <button>DONE</button>
+        <button
+          className={styles[nowStatusTag === 0 ? "active" : ""]}
+          onClick={() => setNowStatusTag(0)}
+        >
+          TO DO
+        </button>
+        <button
+          className={styles[nowStatusTag === 1 ? "active" : ""]}
+          onClick={() => setNowStatusTag(1)}
+        >
+          DONE
+        </button>
+        <button
+          className={styles[nowStatusTag === 2 ? "active" : ""]}
+          onClick={() => setNowStatusTag(2)}
+        >
+          Archive
+        </button>
       </div>
       <div className={styles["list-frame"]}>
         <ul>
