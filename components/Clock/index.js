@@ -4,7 +4,7 @@ import styles from "./styles/index.module.sass";
 
 export default function Indexs(props) {
   const { data, setData, activeItem } = props;
-  const activeMins = 25; //單一節的分鐘
+  const activeMins = 0.1; //單一節的分鐘
   const [lastSecs, setLastSecs] = useState(activeMins * 60); //剩餘分鐘
   const [isStart, setIsStart] = useState(false); //是否開始
   const [chartE1, setCahartE1] = useState(); //圖表

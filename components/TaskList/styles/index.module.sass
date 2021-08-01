@@ -17,6 +17,7 @@
     border-top-right-radius: 10px
     color: $color-gray-200
     background: $color-gray-400
+    cursor: pointer
     &.active
       color: $color-white
       background: $color-red
@@ -33,6 +34,7 @@
 
 .task-item-frame
   width: 100%
+  cursor: pointer
 .task-item-header
   display: flex
   justify-content: space-between
@@ -59,7 +61,10 @@
   transition: all 0.3s ease 0s
 
 .task-info
-  margin-top: 15px
+  width: 80%
+  margin-right: auto
+  margin-left: auto
+  margin-left: 40px
   padding-top: 15px
   font-size: .8rem
   color: $color-gray-200
@@ -74,12 +79,13 @@
 
 .btn-wrap
   width: 100%
-.btn-archive, .btn-save
+.btn-archive, .btn-save,.btn-delete
   border-radius: 20px
   font-size: 1rem
   border: none
   text-indent: 1
-.btn-archive
+  cursor: pointer
+.btn-archive,.btn-delete
   width: 28%
   margin-right: calc( 100% - 98% )
   padding: 10px 20px
@@ -90,3 +96,8 @@
   padding: 10px 35px
   background: $color-red
   color: $color-white
+
+.no-data
+  padding: 20px
+  font-size: 1.2rem
+  text-align: center

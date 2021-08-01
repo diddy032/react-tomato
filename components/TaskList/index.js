@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import NavbarContainer from "../shared/NavbarContainer";
 import EstimatedTomato from "../shared/EstimatedTomato";
+import ToDoToggle from "./toDoToggle";
+import DoneToggle from "./doneToggle";
+import ArchiveToggle from "./archiveToggle";
 import styles from "./styles/index.module.sass";
 
 // TaskStatus
@@ -38,6 +41,87 @@ export default function Indexs(props) {
     // localStorage.setItem("TaskDataArray", JSON.stringify(arr));
   };
 
+  const tabStatusContent = (value) => {
+    switch (value) {
+      case 0:
+        return toDoArr.length > 0 ? (
+          toDoArr.map((item, index) => (
+            <li key={index}>
+              <ToDoToggle
+                data={item}
+                activeID={activeItem.ID}
+                saveＴaskItem={saveＴaskItem}
+                setActiveItem={setActiveItem}
+              />
+            </li>
+          ))
+        ) : (
+          <li className={styles["no-data"]}>No Data</li>
+        );
+      case 1:
+        // return (
+        //   <li>
+        //     <DoneToggle
+        //       data={toDoArr[0]}
+        //       saveＴaskItem={saveＴaskItem}
+        //       setActiveItem={setActiveItem}
+        //     />
+        //   </li>
+        // );
+        return doneArr.length > 0 ? (
+          doneArr.map((item, index) => (
+            <li key={index}>
+              <DoneToggle
+                data={item}
+                saveＴaskItem={saveＴaskItem}
+                setActiveItem={setActiveItem}
+              />
+            </li>
+          ))
+        ) : (
+          <li className={styles["no-data"]}>No Data</li>
+        );
+      case 2:
+        // return (
+        //   <li>
+        //     <ArchiveToggle
+        //       data={toDoArr[0]}
+        //       saveＴaskItem={saveＴaskItem}
+        //       setActiveItem={setActiveItem}
+        //     />
+        //   </li>
+        // );
+        return archiveArr.length > 0 ? (
+          archiveArr.map((item, index) => (
+            <li key={index}>
+              <ArchiveToggle
+                data={item}
+                saveＴaskItem={saveＴaskItem}
+                setActiveItem={setActiveItem}
+              />
+            </li>
+          ))
+        ) : (
+          <li className={styles["no-data"]}>No Data</li>
+        );
+      default:
+        return toDoArr.length > 0 ? (
+          toDoArr.map((item, index) => (
+            <li key={index}>
+              <ToDoToggle
+                data={item}
+                activeID={activeItem.ID}
+                saveＴaskItem={saveＴaskItem}
+                setActiveItem={setActiveItem}
+              />
+            </li>
+          ))
+        ) : (
+          <li className={styles["no-data"]}>No Data</li>
+        );
+    }
+  };
+
   console.log("Tasklist index", "\ndata:", data);
   return (
     <NavbarContainer title={"TASK LISTS"}>
@@ -62,101 +146,8 @@ export default function Indexs(props) {
         </button>
       </div>
       <div className={styles["list-frame"]}>
-        <ul>
-          {data.length > 0
-            ? data.map((item, index) => (
-                <a href="#" key={index}>
-                  <li>
-                    {toggleItem(
-                      item,
-                      saveＴaskItem,
-                      activeItem.ID,
-                      setActiveItem
-                    )}
-                  </li>
-                </a>
-              ))
-            : null}
-        </ul>
+        <ul>{tabStatusContent(nowStatusTag)}</ul>
       </div>
     </NavbarContainer>
   );
 }
-
-const toggleItem = (data, saveＴaskItem, activeID, setActiveItem) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [taskTitle, setTaskTitle] = useState(data.TaskName);
-  const [taskTime, setTaskTime] = useState(data.TaskCount);
-
-  const saveTaskItem = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    let saveObj = {
-      TaskName: taskTitle,
-      TaskCount: taskTime,
-    };
-    let newData = { ...data, ...saveObj };
-    saveＴaskItem(newData);
-  };
-
-  const handleChangeActive = (e, obj) => {
-    e.stopPropagation();
-    setActiveItem(obj);
-  };
-
-  return (
-    <div className={styles["task-item-frame"]}>
-      <div
-        className={styles["task-item-header"]}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <div
-          className={styles["active-item"]}
-          onClick={(e) => handleChangeActive(e, data)}
-        >
-          {activeID === data.ID && (
-            <div className={styles["active-item-img"]}>
-              <img src="/images/icons/tomato_small_color.svg" alt="番茄圖片" />
-            </div>
-          )}
-        </div>
-
-        <div className={styles["task-title-frame"]}>
-          <div className={styles["task-title"]}>{data.TaskName}</div>
-          <div className={styles["task-time"]}>ooo</div>
-        </div>
-        <div
-          className={styles["btn-more"]}
-          style={{ transform: isOpen ? "rotate(90deg)" : "rotate(0)" }}
-        >
-          <Image
-            src="/images/icons/icon-more.svg"
-            alt="更多"
-            width={15}
-            height={15}
-          />
-        </div>
-      </div>
-      {isOpen && (
-        <div className={styles["task-info"]}>
-          <div className={styles["task-input-label"]}>TASK TITLE</div>
-          <input
-            type="text"
-            value={taskTitle}
-            onChange={(e) => setTaskTitle(e.target.value)}
-          />
-          <EstimatedTomato taskTime={taskTime} setTaskTime={setTaskTime} />
-          <div className={styles["btn-wrap"]}>
-            <button className={styles["btn-archive"]}>Archive</button>
-            <button
-              className={styles["btn-save"]}
-              onClick={(e) => saveTaskItem(e)}
-            >
-              SAVE
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
